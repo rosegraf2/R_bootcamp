@@ -84,21 +84,13 @@ grid.arrange(p1, p2, p3, p4, nrow = 1, top = title1)
 ```
 
 
+Conclusion: there is a correlation between bmi and systolic blood pressure, which is significant. 
 ```{r}
 #create linear model and find out statistics and coefficients for bmi and systolic
 linearModSys <- lm(systolic ~ bmi, mydata)
-print(linearMod)
-summary(linearMod)
+#print(linearModSys)
+summary(linearModSys)
 
-#create linear model and find out statistics and coefficients for bmi and systolic
-linearModDia <- lm(diastolic ~ bmi, mydata)
-print(linearMod)
-summary(linearMod)
-
-```
-
-Conclusion: there is a slight correlation between bmi and systolic blood pressure. 
-```{r}
 #making the linear regression for bmi and systolic
 line_label2 <- paste("y = ", toString(round(linearModSys$coefficients[1], 2)), "+", toString(round(linearModSys$coefficients[2], 2)), "x", sep = " ") 
 line_label2
@@ -108,26 +100,31 @@ p7 <- ggplot(mydata, aes(x=bmi, y=systolic)) +
   geom_point(color="#3c7d3e") +
   geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
   theme_ipsum() +
-  annotate("text", x = 52, y = 190, label = line_label2)
+  annotate("text", x = 52, y = 190, label = line_label2)+ 
+  labs(title = "Relationship of Systolic blood pressure and bmi")
 p7 
-
-#linearMod$coefficients
 
 
 ```
-Conclusion: there is a slight significant correlation between diastolic and bmi
+Conclusion: there is a significant correlation between diastolic and bmi. 
 ```{r}
+#create linear model and find out statistics and coefficients for bmi and systolic
+linearModDia <- lm(diastolic ~ bmi, mydata)
+#print(linearModDia)
+summary(linearModDia)
+
 #making the label for linear regression for bmi and diastolic
 line_label2 <- paste("y = ", toString(round(linearModDia$coefficients[1], 2)), "+", toString(round(linearModDia$coefficients[2], 2)), "x", sep = " ") 
 
 #plot of bmi and diastolic with linear trend (black) and confidence interval (green)
-p7 <- ggplot(mydata, aes(x=bmi, y=diastolic)) +
+p8 <- ggplot(mydata, aes(x=bmi, y=diastolic)) +
   geom_point(color="#3c7d3e") +
   geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
   theme_ipsum() +
-  annotate("text", x = 52, y = 120, label = line_label2) 
-p7 
+  annotate("text", x = 52, y = 120, label = line_label2) + 
+  labs(title = "Relationship of diastolic and bmi")
+p8
 ```
 
-
+Overall conclusion: bmi is positively correlated to blood pressure
 
