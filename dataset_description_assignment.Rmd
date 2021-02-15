@@ -37,7 +37,7 @@ options(digits=1)
 stat.desc(mydata, norm = TRUE)
 ```
 
-**explain bin width is 5
+Distribution of age of patients
 ```{r}
 line_label <- paste("Ave Age", toString(round(mean(mydata$age), 1)), sep = " ")
 qplot(mydata$age, binwidth = 5) + 
